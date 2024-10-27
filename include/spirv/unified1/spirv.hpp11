@@ -1254,6 +1254,9 @@ enum class Capability : unsigned {
     MaskedGatherScatterINTEL = 6427,
     CacheControlsINTEL = 6441,
     RegisterLimitsINTEL = 6460,
+    IndirectTailCallsSHADY = 6592,
+    PhysicalFunctionAddressesSHADY = 6593,
+    InModuleFunctionAddressSHADY = 6594,
     Max = 0x7fffffff,
 };
 
@@ -2251,6 +2254,9 @@ enum class Op : unsigned {
     OpGroupLogicalXorKHR = 6408,
     OpMaskedGatherINTEL = 6428,
     OpMaskedScatterINTEL = 6429,
+    OpTypeNoReturnSHADY = 6592,
+    OpExitSHADY = 6593,
+    OpIndirectTailCallSHADY = 6594,
     Max = 0x7fffffff,
 };
 
@@ -3021,6 +3027,9 @@ inline void HasResultAndType(Op opcode, bool *hasResult, bool *hasResultType) {
     case Op::OpGroupLogicalXorKHR: *hasResult = true; *hasResultType = true; break;
     case Op::OpMaskedGatherINTEL: *hasResult = true; *hasResultType = true; break;
     case Op::OpMaskedScatterINTEL: *hasResult = false; *hasResultType = false; break;
+    case Op::OpTypeNoReturnSHADY: *hasResult = true; *hasResultType = false; break;
+    case Op::OpExitSHADY: *hasResult = false; *hasResultType = false; break;
+    case Op::OpIndirectTailCallSHADY: *hasResult = false; *hasResultType = false; break;
     }
 }
 inline const char* SourceLanguageToString(SourceLanguage value) {
@@ -3946,6 +3955,9 @@ inline const char* CapabilityToString(Capability value) {
     case CapabilityMaskedGatherScatterINTEL: return "MaskedGatherScatterINTEL";
     case CapabilityCacheControlsINTEL: return "CacheControlsINTEL";
     case CapabilityRegisterLimitsINTEL: return "RegisterLimitsINTEL";
+    case CapabilityIndirectTailCallsSHADY: return "IndirectTailCallsSHADY";
+    case CapabilityPhysicalFunctionAddressesSHADY: return "PhysicalFunctionAddressesSHADY";
+    case CapabilityInModuleFunctionAddressSHADY: return "InModuleFunctionAddressSHADY";
     default: return "Unknown";
     }
 }
@@ -4865,6 +4877,9 @@ inline const char* OpToString(Op value) {
     case OpGroupLogicalXorKHR: return "OpGroupLogicalXorKHR";
     case OpMaskedGatherINTEL: return "OpMaskedGatherINTEL";
     case OpMaskedScatterINTEL: return "OpMaskedScatterINTEL";
+    case OpTypeNoReturnSHADY: return "OpTypeNoReturnSHADY";
+    case OpExitSHADY: return "OpExitSHADY";
+    case OpIndirectTailCallSHADY: return "OpIndirectTailCallSHADY";
     default: return "Unknown";
     }
 }

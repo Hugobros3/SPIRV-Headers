@@ -1288,6 +1288,9 @@ namespace Spv
             MaskedGatherScatterINTEL = 6427,
             CacheControlsINTEL = 6441,
             RegisterLimitsINTEL = 6460,
+            IndirectTailCallsSHADY = 6592,
+            PhysicalFunctionAddressesSHADY = 6593,
+            InModuleFunctionAddressSHADY = 6594,
             Max = 0x7fffffff,
         }
 
@@ -2315,6 +2318,9 @@ namespace Spv
             OpGroupLogicalXorKHR = 6408,
             OpMaskedGatherINTEL = 6428,
             OpMaskedScatterINTEL = 6429,
+            OpTypeNoReturnSHADY = 6592,
+            OpExitSHADY = 6593,
+            OpIndirectTailCallSHADY = 6594,
             Max = 0x7fffffff,
         }
     }

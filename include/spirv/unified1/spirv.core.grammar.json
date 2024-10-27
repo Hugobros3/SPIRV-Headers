@@ -1380,7 +1380,8 @@
       ],
       "capabilities" : [
         "Addresses",
-        "PhysicalStorageBufferAddresses"
+        "PhysicalStorageBufferAddresses",
+        "PhysicalFunctionAddressesSHADY"
       ],
       "version": "1.0"
     },
@@ -1419,7 +1420,8 @@
       ],
       "capabilities" : [
         "Addresses",
-        "PhysicalStorageBufferAddresses"
+        "PhysicalStorageBufferAddresses",
+        "PhysicalFunctionAddressesSHADY"
       ],
       "version": "1.0"
     },
@@ -6948,8 +6950,8 @@
         { "kind" : "IdResult" },
         { "kind" : "IdRef",        "name" : "'Function'" }
       ],
-      "capabilities" : [ "FunctionPointersINTEL" ],
-      "extensions" : [ "SPV_INTEL_function_pointers" ],
+      "capabilities" : [ "FunctionPointersINTEL", "InModuleFunctionAddressSHADY" ],
+      "extensions" : [ "SPV_INTEL_function_pointers", "SPV_SHADY_indirect_tail_calls" ],
       "version" : "None"
     },
     {
@@ -10254,6 +10256,34 @@
       ],
       "capabilities" : [ "MaskedGatherScatterINTEL" ],
       "version" : "None"
+    },
+    {
+      "opname" : "OpTypeNoReturnSHADY",
+      "class"  : "@exclude",
+      "opcode" : 6592,
+      "operands" : [
+        { "kind" : "IdResult" }
+      ],
+      "capabilities" : [ "IndirectTailCallsSHADY" ],
+      "version": "None"
+    },
+    {
+      "opname" : "OpExitSHADY",
+      "class"  : "@exclude",
+      "opcode" : 6593,
+      "capabilities" : [ "IndirectTailCallsSHADY" ],
+      "version": "None"
+    },
+    {
+      "opname" : "OpIndirectTailCallSHADY",
+      "class"  : "@exclude",
+      "opcode" : 6594,
+      "operands" : [
+        { "kind" : "IdRef",                            "name" : "'Function'" },
+        { "kind" : "IdRef",        "quantifier" : "*", "name" : "'Argument 0', +\n'Argument 1', +\n..." }
+      ],
+      "capabilities" : [ "IndirectTailCallsSHADY" ],
+      "version": "None"
     }
   ],
   "operand_kinds" : [
@@ -12140,8 +12170,8 @@
         {
           "enumerant" : "CodeSectionINTEL",
           "value" : 5605,
-          "extensions" : [ "SPV_INTEL_function_pointers" ],
-          "capabilities" : [ "FunctionPointersINTEL" ],
+          "extensions" : [ "SPV_INTEL_function_pointers", "SPV_SHADY_indirect_tail_calls" ],
+          "capabilities" : [ "FunctionPointersINTEL", "IndirectTailCallsSHADY" ],
           "version" : "None"
         },
         {
@@ -13591,8 +13621,8 @@
         {
           "enumerant" : "ReferencedIndirectlyINTEL",
           "value" : 5602,
-          "capabilities" : [ "IndirectReferencesINTEL" ],
-          "extensions" : [ "SPV_INTEL_function_pointers" ],
+          "capabilities" : [ "IndirectReferencesINTEL", "IndirectTailCallsSHADY" ],
+          "extensions" : [ "SPV_INTEL_function_pointers", "SPV_SHADY_indirect_tail_calls" ],
           "version" : "None"
         },
         {
@@ -16574,6 +16604,24 @@
           "enumerant" : "RegisterLimitsINTEL",
           "value" : 6460,
           "extensions" : [ "SPV_INTEL_maximum_registers" ],
+          "version" : "None"
+        },
+        {
+          "enumerant" : "IndirectTailCallsSHADY",
+          "value" : 6592,
+          "extensions" : [ "SPV_SHADY_indirect_tail_calls" ],
+          "version" : "None"
+        },
+        {
+          "enumerant" : "PhysicalFunctionAddressesSHADY",
+          "value" : 6593,
+          "extensions" : [ "SPV_SHADY_indirect_tail_calls" ],
+          "version" : "None"
+        },
+        {
+          "enumerant" : "InModuleFunctionAddressSHADY",
+          "value" : 6594,
+          "extensions" : [ "SPV_SHADY_indirect_tail_calls" ],
           "version" : "None"
         }
       ]

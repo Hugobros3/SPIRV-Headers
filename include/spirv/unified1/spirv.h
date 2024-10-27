@@ -1258,6 +1258,9 @@ typedef enum SpvCapability_ {
     SpvCapabilityMaskedGatherScatterINTEL = 6427,
     SpvCapabilityCacheControlsINTEL = 6441,
     SpvCapabilityRegisterLimitsINTEL = 6460,
+    SpvCapabilityIndirectTailCallsSHADY = 6592,
+    SpvCapabilityPhysicalFunctionAddressesSHADY = 6593,
+    SpvCapabilityInModuleFunctionAddressSHADY = 6594,
     SpvCapabilityMax = 0x7fffffff,
 } SpvCapability;
 
@@ -2255,6 +2258,9 @@ typedef enum SpvOp_ {
     SpvOpGroupLogicalXorKHR = 6408,
     SpvOpMaskedGatherINTEL = 6428,
     SpvOpMaskedScatterINTEL = 6429,
+    SpvOpTypeNoReturnSHADY = 6592,
+    SpvOpExitSHADY = 6593,
+    SpvOpIndirectTailCallSHADY = 6594,
     SpvOpMax = 0x7fffffff,
 } SpvOp;
 
@@ -3025,6 +3031,9 @@ inline void SpvHasResultAndType(SpvOp opcode, bool *hasResult, bool *hasResultTy
     case SpvOpGroupLogicalXorKHR: *hasResult = true; *hasResultType = true; break;
     case SpvOpMaskedGatherINTEL: *hasResult = true; *hasResultType = true; break;
     case SpvOpMaskedScatterINTEL: *hasResult = false; *hasResultType = false; break;
+    case SpvOpTypeNoReturnSHADY: *hasResult = true; *hasResultType = false; break;
+    case SpvOpExitSHADY: *hasResult = false; *hasResultType = false; break;
+    case SpvOpIndirectTailCallSHADY: *hasResult = false; *hasResultType = false; break;
     }
 }
 inline const char* SpvSourceLanguageToString(SpvSourceLanguage value) {
@@ -3950,6 +3959,9 @@ inline const char* SpvCapabilityToString(SpvCapability value) {
     case SpvCapabilityMaskedGatherScatterINTEL: return "MaskedGatherScatterINTEL";
     case SpvCapabilityCacheControlsINTEL: return "CacheControlsINTEL";
     case SpvCapabilityRegisterLimitsINTEL: return "RegisterLimitsINTEL";
+    case SpvCapabilityIndirectTailCallsSHADY: return "IndirectTailCallsSHADY";
+    case SpvCapabilityPhysicalFunctionAddressesSHADY: return "PhysicalFunctionAddressesSHADY";
+    case SpvCapabilityInModuleFunctionAddressSHADY: return "InModuleFunctionAddressSHADY";
     default: return "Unknown";
     }
 }
@@ -4869,6 +4881,9 @@ inline const char* SpvOpToString(SpvOp value) {
     case SpvOpGroupLogicalXorKHR: return "OpGroupLogicalXorKHR";
     case SpvOpMaskedGatherINTEL: return "OpMaskedGatherINTEL";
     case SpvOpMaskedScatterINTEL: return "OpMaskedScatterINTEL";
+    case SpvOpTypeNoReturnSHADY: return "OpTypeNoReturnSHADY";
+    case SpvOpExitSHADY: return "OpExitSHADY";
+    case SpvOpIndirectTailCallSHADY: return "OpIndirectTailCallSHADY";
     default: return "Unknown";
     }
 }
