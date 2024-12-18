@@ -264,6 +264,7 @@ typedef enum SpvStorageClass_ {
     SpvStorageClassCodeSectionINTEL = 5605,
     SpvStorageClassDeviceOnlyINTEL = 5936,
     SpvStorageClassHostOnlyINTEL = 5937,
+    SpvStorageClassCodeSectionSHADY = 6592,
     SpvStorageClassMax = 0x7fffffff,
 } SpvStorageClass;
 
@@ -649,6 +650,9 @@ typedef enum SpvDecoration_ {
     SpvDecorationImplementInRegisterMapINTEL = 6191,
     SpvDecorationCacheControlLoadINTEL = 6442,
     SpvDecorationCacheControlStoreINTEL = 6443,
+    SpvDecorationIndirectlyCallableSHADY = 6592,
+    SpvDecorationIndirectUnsafeSHADY = 6593,
+    SpvDecorationReentrantSHADY = 6594,
     SpvDecorationMax = 0x7fffffff,
 } SpvDecoration;
 
@@ -1261,6 +1265,7 @@ typedef enum SpvCapability_ {
     SpvCapabilityIndirectTailCallsSHADY = 6592,
     SpvCapabilityPhysicalFunctionAddressesSHADY = 6593,
     SpvCapabilityInModuleFunctionAddressSHADY = 6594,
+    SpvCapabilityCallStackSHADY = 6595,
     SpvCapabilityMax = 0x7fffffff,
 } SpvCapability;
 
@@ -2258,9 +2263,9 @@ typedef enum SpvOp_ {
     SpvOpGroupLogicalXorKHR = 6408,
     SpvOpMaskedGatherINTEL = 6428,
     SpvOpMaskedScatterINTEL = 6429,
-    SpvOpTypeNoReturnSHADY = 6592,
-    SpvOpExitSHADY = 6593,
     SpvOpIndirectTailCallSHADY = 6594,
+    SpvOpIndirectCallSHADY = 6595,
+    SpvOpConstantFunctionAddressSHADY = 6596,
     SpvOpMax = 0x7fffffff,
 } SpvOp;
 
@@ -3031,9 +3036,9 @@ inline void SpvHasResultAndType(SpvOp opcode, bool *hasResult, bool *hasResultTy
     case SpvOpGroupLogicalXorKHR: *hasResult = true; *hasResultType = true; break;
     case SpvOpMaskedGatherINTEL: *hasResult = true; *hasResultType = true; break;
     case SpvOpMaskedScatterINTEL: *hasResult = false; *hasResultType = false; break;
-    case SpvOpTypeNoReturnSHADY: *hasResult = true; *hasResultType = false; break;
-    case SpvOpExitSHADY: *hasResult = false; *hasResultType = false; break;
     case SpvOpIndirectTailCallSHADY: *hasResult = false; *hasResultType = false; break;
+    case SpvOpIndirectCallSHADY: *hasResult = true; *hasResultType = true; break;
+    case SpvOpConstantFunctionAddressSHADY: *hasResult = true; *hasResultType = true; break;
     }
 }
 inline const char* SpvSourceLanguageToString(SpvSourceLanguage value) {
@@ -3227,6 +3232,7 @@ inline const char* SpvStorageClassToString(SpvStorageClass value) {
     case SpvStorageClassCodeSectionINTEL: return "CodeSectionINTEL";
     case SpvStorageClassDeviceOnlyINTEL: return "DeviceOnlyINTEL";
     case SpvStorageClassHostOnlyINTEL: return "HostOnlyINTEL";
+    case SpvStorageClassCodeSectionSHADY: return "CodeSectionSHADY";
     default: return "Unknown";
     }
 }
@@ -3551,6 +3557,9 @@ inline const char* SpvDecorationToString(SpvDecoration value) {
     case SpvDecorationImplementInRegisterMapINTEL: return "ImplementInRegisterMapINTEL";
     case SpvDecorationCacheControlLoadINTEL: return "CacheControlLoadINTEL";
     case SpvDecorationCacheControlStoreINTEL: return "CacheControlStoreINTEL";
+    case SpvDecorationIndirectlyCallableSHADY: return "IndirectlyCallableSHADY";
+    case SpvDecorationIndirectUnsafeSHADY: return "IndirectUnsafeSHADY";
+    case SpvDecorationReentrantSHADY: return "ReentrantSHADY";
     default: return "Unknown";
     }
 }
@@ -3962,6 +3971,7 @@ inline const char* SpvCapabilityToString(SpvCapability value) {
     case SpvCapabilityIndirectTailCallsSHADY: return "IndirectTailCallsSHADY";
     case SpvCapabilityPhysicalFunctionAddressesSHADY: return "PhysicalFunctionAddressesSHADY";
     case SpvCapabilityInModuleFunctionAddressSHADY: return "InModuleFunctionAddressSHADY";
+    case SpvCapabilityCallStackSHADY: return "CallStackSHADY";
     default: return "Unknown";
     }
 }
@@ -4881,9 +4891,9 @@ inline const char* SpvOpToString(SpvOp value) {
     case SpvOpGroupLogicalXorKHR: return "OpGroupLogicalXorKHR";
     case SpvOpMaskedGatherINTEL: return "OpMaskedGatherINTEL";
     case SpvOpMaskedScatterINTEL: return "OpMaskedScatterINTEL";
-    case SpvOpTypeNoReturnSHADY: return "OpTypeNoReturnSHADY";
-    case SpvOpExitSHADY: return "OpExitSHADY";
     case SpvOpIndirectTailCallSHADY: return "OpIndirectTailCallSHADY";
+    case SpvOpIndirectCallSHADY: return "OpIndirectCallSHADY";
+    case SpvOpConstantFunctionAddressSHADY: return "OpConstantFunctionAddressSHADY";
     default: return "Unknown";
     }
 }

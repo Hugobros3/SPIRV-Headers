@@ -251,6 +251,7 @@ spv = {
         CodeSectionINTEL = 5605,
         DeviceOnlyINTEL = 5936,
         HostOnlyINTEL = 5937,
+        CodeSectionSHADY = 6592,
         Max = 0x7fffffff,
     },
 
@@ -636,6 +637,9 @@ spv = {
         ImplementInRegisterMapINTEL = 6191,
         CacheControlLoadINTEL = 6442,
         CacheControlStoreINTEL = 6443,
+        IndirectlyCallableSHADY = 6592,
+        IndirectUnsafeSHADY = 6593,
+        ReentrantSHADY = 6594,
         Max = 0x7fffffff,
     },
 
@@ -1248,6 +1252,7 @@ spv = {
         IndirectTailCallsSHADY = 6592,
         PhysicalFunctionAddressesSHADY = 6593,
         InModuleFunctionAddressSHADY = 6594,
+        CallStackSHADY = 6595,
         Max = 0x7fffffff,
     },
 
@@ -2245,9 +2250,9 @@ spv = {
         OpGroupLogicalXorKHR = 6408,
         OpMaskedGatherINTEL = 6428,
         OpMaskedScatterINTEL = 6429,
-        OpTypeNoReturnSHADY = 6592,
-        OpExitSHADY = 6593,
         OpIndirectTailCallSHADY = 6594,
+        OpIndirectCallSHADY = 6595,
+        OpConstantFunctionAddressSHADY = 6596,
         Max = 0x7fffffff,
     },
 

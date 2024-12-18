@@ -260,6 +260,7 @@ enum class StorageClass : unsigned {
     CodeSectionINTEL = 5605,
     DeviceOnlyINTEL = 5936,
     HostOnlyINTEL = 5937,
+    CodeSectionSHADY = 6592,
     Max = 0x7fffffff,
 };
 
@@ -645,6 +646,9 @@ enum class Decoration : unsigned {
     ImplementInRegisterMapINTEL = 6191,
     CacheControlLoadINTEL = 6442,
     CacheControlStoreINTEL = 6443,
+    IndirectlyCallableSHADY = 6592,
+    IndirectUnsafeSHADY = 6593,
+    ReentrantSHADY = 6594,
     Max = 0x7fffffff,
 };
 
@@ -1257,6 +1261,7 @@ enum class Capability : unsigned {
     IndirectTailCallsSHADY = 6592,
     PhysicalFunctionAddressesSHADY = 6593,
     InModuleFunctionAddressSHADY = 6594,
+    CallStackSHADY = 6595,
     Max = 0x7fffffff,
 };
 
@@ -2254,9 +2259,9 @@ enum class Op : unsigned {
     OpGroupLogicalXorKHR = 6408,
     OpMaskedGatherINTEL = 6428,
     OpMaskedScatterINTEL = 6429,
-    OpTypeNoReturnSHADY = 6592,
-    OpExitSHADY = 6593,
     OpIndirectTailCallSHADY = 6594,
+    OpIndirectCallSHADY = 6595,
+    OpConstantFunctionAddressSHADY = 6596,
     Max = 0x7fffffff,
 };
 
@@ -3027,9 +3032,9 @@ inline void HasResultAndType(Op opcode, bool *hasResult, bool *hasResultType) {
     case Op::OpGroupLogicalXorKHR: *hasResult = true; *hasResultType = true; break;
     case Op::OpMaskedGatherINTEL: *hasResult = true; *hasResultType = true; break;
     case Op::OpMaskedScatterINTEL: *hasResult = false; *hasResultType = false; break;
-    case Op::OpTypeNoReturnSHADY: *hasResult = true; *hasResultType = false; break;
-    case Op::OpExitSHADY: *hasResult = false; *hasResultType = false; break;
     case Op::OpIndirectTailCallSHADY: *hasResult = false; *hasResultType = false; break;
+    case Op::OpIndirectCallSHADY: *hasResult = true; *hasResultType = true; break;
+    case Op::OpConstantFunctionAddressSHADY: *hasResult = true; *hasResultType = true; break;
     }
 }
 inline const char* SourceLanguageToString(SourceLanguage value) {
@@ -3223,6 +3228,7 @@ inline const char* StorageClassToString(StorageClass value) {
     case StorageClassCodeSectionINTEL: return "CodeSectionINTEL";
     case StorageClassDeviceOnlyINTEL: return "DeviceOnlyINTEL";
     case StorageClassHostOnlyINTEL: return "HostOnlyINTEL";
+    case StorageClassCodeSectionSHADY: return "CodeSectionSHADY";
     default: return "Unknown";
     }
 }
@@ -3547,6 +3553,9 @@ inline const char* DecorationToString(Decoration value) {
     case DecorationImplementInRegisterMapINTEL: return "ImplementInRegisterMapINTEL";
     case DecorationCacheControlLoadINTEL: return "CacheControlLoadINTEL";
     case DecorationCacheControlStoreINTEL: return "CacheControlStoreINTEL";
+    case DecorationIndirectlyCallableSHADY: return "IndirectlyCallableSHADY";
+    case DecorationIndirectUnsafeSHADY: return "IndirectUnsafeSHADY";
+    case DecorationReentrantSHADY: return "ReentrantSHADY";
     default: return "Unknown";
     }
 }
@@ -3958,6 +3967,7 @@ inline const char* CapabilityToString(Capability value) {
     case CapabilityIndirectTailCallsSHADY: return "IndirectTailCallsSHADY";
     case CapabilityPhysicalFunctionAddressesSHADY: return "PhysicalFunctionAddressesSHADY";
     case CapabilityInModuleFunctionAddressSHADY: return "InModuleFunctionAddressSHADY";
+    case CapabilityCallStackSHADY: return "CallStackSHADY";
     default: return "Unknown";
     }
 }
@@ -4877,9 +4887,9 @@ inline const char* OpToString(Op value) {
     case OpGroupLogicalXorKHR: return "OpGroupLogicalXorKHR";
     case OpMaskedGatherINTEL: return "OpMaskedGatherINTEL";
     case OpMaskedScatterINTEL: return "OpMaskedScatterINTEL";
-    case OpTypeNoReturnSHADY: return "OpTypeNoReturnSHADY";
-    case OpExitSHADY: return "OpExitSHADY";
     case OpIndirectTailCallSHADY: return "OpIndirectTailCallSHADY";
+    case OpIndirectCallSHADY: return "OpIndirectCallSHADY";
+    case OpConstantFunctionAddressSHADY: return "OpConstantFunctionAddressSHADY";
     default: return "Unknown";
     }
 }
