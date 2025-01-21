@@ -10265,7 +10265,7 @@
         { "kind" : "IdRef",                            "name" : "'Function'" },
         { "kind" : "IdRef",        "quantifier" : "*", "name" : "'Argument 0', +\n'Argument 1', +\n..." }
       ],
-      "capabilities" : [ "IndirectCallsSHADY" ],
+      "capabilities" : [ "IndirectTailCallsSHADY" ],
       "version": "None"
     },
     {
@@ -10278,7 +10278,7 @@
         { "kind" : "IdRef",                            "name" : "'Function'" },
         { "kind" : "IdRef",        "quantifier" : "*", "name" : "'Argument 0', +\n'Argument 1', +\n..." }
       ],
-      "capabilities" : [ "IndirectCallsSHADY" ],
+      "capabilities" : [ "IndirectTailCallsSHADY" ],
       "version": "None"
     },
     {
